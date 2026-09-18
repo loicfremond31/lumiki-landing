@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lumiki</title>
-<meta name="description" content="Lumiki, l'application tablette hors-ligne et sans publicité pour les 2-8 ans — campagne de financement participatif.">
+<meta name="description" content="Lumiki, l'application hors-ligne et sans publicité pour les 2 à 8 ans. Alpha en cours, bêta testeurs recherchés.">
 <link rel="icon" type="image/png" href="assets/icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -338,7 +338,7 @@
     color: var(--purple);
     flex: none;
   }
-  details[open] summary::after { content: "–"; }
+  details[open] summary::after { content: "-"; }
   details p { color: var(--text-soft); margin-top: 12px; font-size: 15px; }
 
   /* ---------- Final CTA + footer ---------- */
@@ -361,6 +361,22 @@
   }
   footer a { color: var(--purple-deep); font-weight: 700; text-decoration: none; }
 
+  /* ---------- Beta testers ---------- */
+  .beta-box {
+    background: var(--surface);
+    border: 2px dashed var(--purple);
+    border-radius: 24px;
+    padding: 36px 28px;
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .beta-box h2 { font-size: clamp(24px, 3vw, 30px); }
+  .beta-box p { color: var(--text-soft); margin: 14px auto 0; max-width: 58ch; }
+  .beta-box .cta-row { justify-content: center; }
+  .btn-purple { background: var(--purple); color: #fff; }
+  .btn-outline { background: transparent; color: var(--text); border-color: var(--purple); }
+
   @media (max-width: 760px) {
     .hero-grid, .vision-grid, .feature-grid, .about, .funding { grid-template-columns: 1fr; }
     .hero-art { transform: none; order: -1; }
@@ -372,20 +388,20 @@
 
 <header class="hero">
   <div class="wrap">
-    <span class="eyebrow">🌱 Campagne de financement participatif</span>
+    <span class="eyebrow">🌱 Projet en alpha · Campagne Ulule à venir</span>
     <div class="hero-grid">
       <div>
         <h1>Lumiki</h1>
-        <p class="tagline">L'application qui fait grandir les enfants sans les coller à un écran de plus.</p>
-        <p class="sub">Une appli tablette hors-ligne, sans publicité et sans compte à créer, pour les enfants de 2 à 8&nbsp;ans — imaginée et développée par un créateur indépendant.</p>
+        <p class="tagline">L'application qui aide les enfants à grandir sans les coller à un écran de plus.</p>
+        <p class="sub">Lumiki est une application hors-ligne, sans publicité et sans compte à créer, pour les enfants de 2 à 8&nbsp;ans. Elle est pensée pour les tablettes comme pour les téléphones.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="#financement" aria-disabled="true">🚀 Bientôt sur Ulule</a>
+          <a class="btn btn-primary" href="#beta">🧪 Devenir bêta testeur</a>
           <a class="btn btn-ghost" href="#deja-la">Voir ce qui existe déjà</a>
         </div>
-        <p class="note-pill">La cagnotte n'est pas encore ouverte — cette page sera mise à jour dès son lancement.</p>
+        <p class="note-pill">La cagnotte Ulule n'est pas encore ouverte. Cette page sera mise à jour dès son lancement.</p>
       </div>
       <div class="hero-art">
-        <img src="assets/village.png" alt="Le village de Lumiki : une carte illustrée reliant tous les jeux et activités de l'application">
+        <img src="assets/village.png" alt="Le village de Lumiki : une carte illustrée qui relie tous les jeux et activités de l'application">
       </div>
     </div>
   </div>
@@ -395,35 +411,35 @@
   <div class="wrap">
     <div class="section-head">
       <span class="sign">Pourquoi Lumiki&nbsp;?</span>
-      <p>Les écrans ne vont pas disparaître de l'enfance. Autant que le temps passé dessus vaille quelque chose — et reste entre les mains des parents, pas d'un algorithme.</p>
+      <p>Les écrans font désormais partie de l'enfance. Autant que le temps passé dessus ait de la valeur, et que ce soient les parents qui gardent la main plutôt qu'un algorithme.</p>
     </div>
     <div class="vision-grid">
       <div class="vision-card">
         <div class="mark">📴</div>
         <div>
           <h3>Hors-ligne par défaut</h3>
-          <p>Aucune connexion requise, aucune donnée envoyée nulle part. Ça fonctionne dans la voiture, l'avion, ou sans wifi à la maison.</p>
+          <p>Aucune connexion nécessaire et aucune donnée envoyée nulle part. Lumiki fonctionne en voiture, en avion ou sans wifi à la maison.</p>
         </div>
       </div>
       <div class="vision-card">
         <div class="mark">🚫</div>
         <div>
           <h3>Zéro publicité, zéro piège</h3>
-          <p>Pas de pub, pas d'achat intégré caché, pas de mécanique pensée pour maximiser le temps d'écran. Un espace protégé, pas un entonnoir marketing.</p>
+          <p>Pas de pub, pas d'achat caché, pas de mécanique conçue pour allonger le temps d'écran. Un espace protégé plutôt qu'un entonnoir marketing.</p>
         </div>
       </div>
       <div class="vision-card">
         <div class="mark">🔐</div>
         <div>
           <h3>Les parents gardent la main</h3>
-          <p>Code PIN, déverrouillage biométrique, plages horaires, permissions par activité et suivi de la progression — tout est réglable depuis l'espace parent.</p>
+          <p>Code PIN, déverrouillage biométrique, plages horaires, permissions par activité et suivi de la progression, le tout réglable depuis l'espace parent.</p>
         </div>
       </div>
       <div class="vision-card">
         <div class="mark">🧩</div>
         <div>
           <h3>Pensé pour 2 à 8&nbsp;ans</h3>
-          <p>Gestes simples, sessions courtes, retour au village toujours à portée de main, et une difficulté qui s'ajuste au fil des parties.</p>
+          <p>Gestes simples, sessions courtes, retour au village toujours possible et difficulté qui s'ajuste au fil des parties.</p>
         </div>
       </div>
     </div>
@@ -434,136 +450,163 @@
   <div class="wrap">
     <div class="section-head">
       <span class="sign">Déjà dans l'application</span>
-      <p>Lumiki n'est pas une maquette : c'est une application qui tourne déjà, testée en continu, avec du vrai contenu dedans.</p>
+      <p>Lumiki est encore en alpha, mais ce n'est pas une maquette : l'application fonctionne déjà, avec de vrais jeux et de vrais contenus.</p>
     </div>
     <div class="feature-grid">
       <div class="feature-card">
         <span class="tag">Navigation</span>
         <h3>Le village</h3>
-        <p>Une carte illustrée où l'enfant se déplace librement entre les activités, sa maison, son jardin et sa bibliothèque.</p>
+        <p>Une carte illustrée où l'enfant circule librement entre les jeux, sa maison, son jardin et la bibliothèque.</p>
       </div>
       <div class="feature-card">
-        <span class="tag">8 mini-jeux</span>
-        <h3>Memory, quiz, tri, puzzle…</h3>
-        <p>Memory, quiz, comptage, tri, association, puzzle, lettres et traçage — avec une difficulté qui s'adapte automatiquement au niveau de l'enfant.</p>
+        <span class="tag">8 jeux</span>
+        <h3>Des jeux éducatifs</h3>
+        <p>Memory, quiz, comptage, tri, association, puzzle, lettres et traçage. La difficulté s'adapte automatiquement au niveau de l'enfant.</p>
       </div>
       <div class="feature-card">
         <span class="tag">Créativité</span>
         <h3>Atelier de dessin</h3>
-        <p>Dessin libre ou coloriage guidé, palette de couleurs, gomme et tailles de pinceau — une vraie petite boîte à outils.</p>
+        <p>Dessin libre ou coloriage, palette de couleurs, gomme et plusieurs tailles de pinceau.</p>
       </div>
       <div class="feature-card">
         <span class="tag">Audio</span>
         <h3>Histoires, musiques, berceuses</h3>
-        <p>Une bibliothèque classée par humeur, avec lecture, pause et reprise — et la possibilité d'y ajouter les histoires enregistrées par un parent.</p>
+        <p>Des contenus classés par catégorie, avec pause, reprise, avance et recul. L'écoute continue même quand l'enfant change d'activité, et un parent peut ajouter ses propres enregistrements.</p>
       </div>
       <div class="feature-card">
         <span class="tag">Mini-jeu</span>
         <h3>Mon jardin</h3>
-        <p>Planter, arroser, récolter : un petit jeu de patience qui rapporte des étoiles, à son propre rythme.</p>
+        <p>Planter, arroser, récolter : un petit jeu de patience qui rapporte des étoiles.</p>
       </div>
       <div class="feature-card">
         <span class="tag">Espace parent</span>
         <h3>Un vrai tableau de bord</h3>
-        <p>Code PIN et biométrie, plages d'écran, permissions par catégorie, suivi de progression et catalogue vidéo sous contrôle parental.</p>
+        <p>Code PIN et biométrie, plages d'écran, permissions par catégorie, suivi de la progression et catalogue vidéo sous contrôle parental.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="feuille-de-route">
+<section id="beta">
+  <div class="wrap">
+    <div class="beta-box">
+      <span class="sign" style="margin-bottom:20px;">Bêta testeurs recherchés</span>
+      <h2>Aujourd'hui, seules deux personnes testent Lumiki</h2>
+      <p>L'application est en alpha et j'ai besoin de regards neufs. Si vous avez un enfant de 2 à 8&nbsp;ans et une tablette ou un téléphone, vous pouvez m'aider : essayer l'application, me dire ce qui plaît, ce qui bloque et ce qui manque.</p>
+      <p>Quelques bugs sont normaux à ce stade, et chaque retour compte énormément.</p>
+      <div class="cta-row">
+        <a class="btn btn-purple" href="mailto:loic.fremond31@gmail.com?subject=B%C3%AAta%20testeur%20Lumiki">✉️ Je veux tester Lumiki</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="feuille-de-route" class="band">
   <div class="wrap">
     <div class="section-head">
       <span class="sign">Ce qui arrive ensuite</span>
-      <p>Votre soutien accélère directement cette liste — le développement continue avec ou sans la cagnotte, mais elle décide de sa vitesse.</p>
+      <p>Le développement continue de toute façon. La cagnotte permettra surtout d'aller plus vite.</p>
     </div>
     <div class="path">
       <div class="path-item">
         <span class="status">En cours</span>
-        <h3>Un compagnon à choyer dans « Ma maison »</h3>
-        <p>Un mini-jeu façon tamagotchi : nourrir, jouer, endormir, laver et câliner sa mascotte — avec des décors qui changent le jour et la nuit.</p>
+        <h3>Un compagnon à chouchouter dans « Ma maison »</h3>
+        <p>Un mini-jeu façon tamagotchi : nourrir, jouer, endormir, laver et câliner la mascotte, avec des décors qui changent entre le jour et la nuit.</p>
       </div>
       <div class="path-item">
         <span class="status">En cours</span>
         <h3>Une nouvelle identité visuelle</h3>
-        <p>Le village, les animaux et la mascotte sont progressivement réillustrés dans un style plus riche et plus chaleureux, image par image.</p>
+        <p>Le village, les animaux et la mascotte sont peu à peu redessinés dans un style plus riche et plus chaleureux.</p>
+      </div>
+      <div class="path-item">
+        <span class="status">Prévu</span>
+        <h3>Sur tablette et sur téléphone</h3>
+        <p>L'interface s'adaptera aux deux formats pour que Lumiki soit agréable à utiliser partout.</p>
       </div>
       <div class="path-item">
         <span class="status">Prévu</span>
         <h3>Saisons et ambiances</h3>
-        <p>Après le jour et la nuit, les décors du village évolueront avec les saisons — été, automne, hiver, printemps.</p>
+        <p>Après le jour et la nuit, les décors du village changeront au fil des saisons : printemps, été, automne et hiver.</p>
       </div>
       <div class="path-item">
         <span class="status">Prévu</span>
         <h3>Plus de contenu</h3>
-        <p>De nouveaux mondes thématiques, de nouvelles histoires et de nouveaux mini-jeux, au même niveau d'exigence que l'existant.</p>
+        <p>De nouveaux mondes, de nouvelles histoires et de nouveaux jeux, avec le même niveau d'exigence que l'existant.</p>
       </div>
       <div class="path-item">
         <span class="status">À l'étude</span>
         <h3>Sauvegarde optionnelle</h3>
-        <p>Une synchronisation entre appareils pour les familles qui la souhaitent — sans jamais remettre en cause le fonctionnement hors-ligne par défaut.</p>
+        <p>Une synchronisation entre appareils pour les familles qui le souhaitent, sans jamais remettre en cause le fonctionnement hors-ligne.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="qui-suis-je" class="band">
+<section id="qui-suis-je">
   <div class="wrap about">
     <div class="about-portrait">
       <img src="assets/mascot-wave.png" alt="La mascotte de Lumiki qui fait coucou">
       <div class="name">Loïc</div>
-      <div class="role">Développeur, papa, créateur de Lumiki</div>
+      <div class="role">Développeur et papa</div>
     </div>
     <div class="about-text">
       <span class="sign" style="margin-bottom:18px;">Qui je suis</span>
-      <p>Je suis développeur, et surtout papa. Lumiki est né d'un besoin très concret&nbsp;: trouver, pour mes propres enfants, une application qui ne soit ni truffée de pub, ni pensée pour les garder scotchés à l'écran le plus longtemps possible.</p>
-      <p>Je porte ce projet moi-même, avec l'idée qu'une application pour enfants peut être exigeante sans être intrusive&nbsp;: pas de compte à créer, pas de données qui partent quelque part, pas de mécanique pensée pour maximiser le temps d'écran. Je la construis avec le même soin qu'on mettrait dans un livre ou un jouet en bois&nbsp;: rien n'est laissé au hasard. C'est un travail lent, et c'est exactement pour ça que la cagnotte compte.</p>
+      <p>Je suis développeur et papa d'un enfant. Lumiki est né d'un besoin très concret : trouver pour mon enfant une application sans publicité, qui ne cherche pas à le garder devant l'écran le plus longtemps possible.</p>
+      <p>Je porte ce projet moi-même, avec la conviction qu'une application pour enfants peut être ambitieuse sans être intrusive : pas de compte à créer, pas de données qui partent ailleurs, pas de mécanique pour prolonger le temps d'écran. Je la construis avec le soin qu'on met dans un livre ou un jouet en bois. C'est un travail lent, et c'est pour cela que la cagnotte compte.</p>
     </div>
   </div>
 </section>
 
-<section id="financement">
+<section id="financement" class="band">
   <div class="wrap">
     <div class="funding">
       <div>
         <h2>À quoi servira la cagnotte</h2>
         <ul>
-          <li>🛠️ <span><b>Temps de développement</b> — pouvoir avancer sur Lumiki de façon soutenue plutôt qu'entre deux missions.</span></li>
-          <li>🎨 <span><b>Univers graphique</b> — enrichir et faire évoluer le monde visuel de Lumiki.</span></li>
-          <li>📚 <span><b>Contenu additionnel</b> — de nouvelles histoires, de nouveaux mini-jeux, de nouveaux mondes.</span></li>
-          <li>☁️ <span><b>Infrastructure</b> — si la sauvegarde optionnelle voit le jour, ses coûts de serveur.</span></li>
+          <li>🛠️ <span><b>Temps de développement.</b> Pouvoir avancer sur Lumiki de façon régulière.</span></li>
+          <li>🎨 <span><b>Univers graphique.</b> Enrichir et faire évoluer le monde visuel de Lumiki.</span></li>
+          <li>📚 <span><b>Contenu additionnel.</b> De nouvelles histoires, de nouveaux jeux, de nouveaux mondes.</span></li>
+          <li>☁️ <span><b>Infrastructure.</b> Les frais de serveur si la sauvegarde optionnelle voit le jour.</span></li>
         </ul>
       </div>
       <div class="goal-card">
         <div class="amount placeholder">[Montant] €</div>
-        <div class="amount-label">Objectif — à confirmer au lancement de la campagne</div>
+        <div class="amount-label">Objectif à confirmer au lancement de la campagne</div>
         <a class="btn btn-primary" style="margin-top:18px;" href="#" aria-disabled="true">🚀 Bientôt sur Ulule</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="faq" class="band">
+<section id="faq">
   <div class="wrap">
     <div class="section-head">
       <span class="sign">Questions fréquentes</span>
     </div>
     <div class="faq">
       <details open>
-        <summary>L'application est-elle vraiment utilisable hors-ligne&nbsp;?</summary>
-        <p>Oui, entièrement. Tout le contenu est installé sur la tablette&nbsp;: aucune connexion internet n'est nécessaire pour jouer, écouter une histoire ou dessiner.</p>
+        <summary>Où en est l'application&nbsp;?</summary>
+        <p>Lumiki est en alpha. Elle fonctionne, mais elle évolue vite et seules deux personnes la testent pour l'instant. C'est pour cela que je cherche des bêta testeurs.</p>
       </details>
       <details>
-        <summary>Sur quel appareil fonctionne Lumiki&nbsp;?</summary>
-        <p>Lumiki est conçue pour les tablettes Android, en mode paysage. D'autres plateformes pourront être envisagées selon l'accueil du projet.</p>
+        <summary>Comment devenir bêta testeur&nbsp;?</summary>
+        <p>Écrivez-moi à <a href="mailto:loic.fremond31@gmail.com?subject=B%C3%AAta%20testeur%20Lumiki">loic.fremond31@gmail.com</a> en indiquant l'âge de votre enfant et le type d'appareil que vous utilisez. Je vous expliquerai comment installer l'application.</p>
+      </details>
+      <details>
+        <summary>L'application est-elle vraiment utilisable hors-ligne&nbsp;?</summary>
+        <p>Oui, entièrement. Tout le contenu est installé sur l'appareil : aucune connexion n'est nécessaire pour jouer, écouter une histoire ou dessiner.</p>
+      </details>
+      <details>
+        <summary>Sur quels appareils fonctionne Lumiki&nbsp;?</summary>
+        <p>Lumiki est pensée pour les tablettes et les téléphones. Les tests se font pour l'instant sur Android, et d'autres plateformes pourront être envisagées plus tard.</p>
       </details>
       <details>
         <summary>À partir de quel âge&nbsp;?</summary>
-        <p>L'application vise les enfants de 2 à 8&nbsp;ans, avec des activités qui s'ajustent progressivement à leur niveau.</p>
+        <p>L'application s'adresse aux enfants de 2 à 8&nbsp;ans, avec des activités qui s'ajustent progressivement à leur niveau.</p>
       </details>
       <details>
         <summary>Quand la campagne Ulule sera-t-elle en ligne&nbsp;?</summary>
-        <p>Elle n'est pas encore lancée — cette page sera mise à jour avec le lien dès son ouverture.</p>
+        <p>Elle n'est pas encore lancée. Cette page sera mise à jour avec le lien dès son ouverture.</p>
       </details>
     </div>
   </div>
@@ -574,17 +617,18 @@
     <div class="final-cta">
       <img src="assets/mascot-neutral.png" alt="La mascotte de Lumiki">
       <h2>Aidez Lumiki à grandir</h2>
-      <p>Chaque contribution finance directement du temps de développement et des illustrations en plus dans l'application.</p>
+      <p>Testez l'application dès maintenant, ou soutenez le projet quand la cagnotte ouvrira.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#" aria-disabled="true">🚀 Bientôt sur Ulule</a>
+        <a class="btn btn-purple" href="mailto:loic.fremond31@gmail.com?subject=B%C3%AAta%20testeur%20Lumiki">✉️ Devenir bêta testeur</a>
+        <a class="btn btn-outline" href="#" aria-disabled="true">🚀 Bientôt sur Ulule</a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>Lumiki — application éducative pour tablette, hors-ligne et sans publicité.</p>
-  <p style="margin-top:6px;">[Ton email ou tes réseaux ici] · <a href="#">Suivre le projet</a></p>
+  <p>Lumiki, application éducative hors-ligne et sans publicité pour tablettes et téléphones.</p>
+  <p style="margin-top:6px;">Contact : <a href="mailto:loic.fremond31@gmail.com">loic.fremond31@gmail.com</a></p>
 </footer>
 
 </body>
