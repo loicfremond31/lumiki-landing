@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumiki</title>
+<meta name="description" content="Lumiki, l'application tablette hors-ligne et sans publicité pour les 2-8 ans — campagne de financement participatif.">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #7C6CF0;
+    --purple-deep: #5C4CD1;
+    --ink: #2B1B12;
+    --cream: #FBF7F1;
+    --cream-2: #F3EEFF;
+    --gold: #FFD166;
+    --blush: #FF9EC4;
+    --line: #E7DFF7;
+    --surface: #FFFFFF;
+    --bg: var(--cream);
+    --text: var(--ink);
+    --text-soft: #6b5f56;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1C1530;
+      --surface: #241B3D;
+      --cream-2: #2A2148;
+      --text: #F3EFFA;
+      --text-soft: #C6BEDD;
+      --line: #3A3060;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1C1530;
+    --surface: #241B3D;
+    --cream-2: #2A2148;
+    --text: #F3EFFA;
+    --text-soft: #C6BEDD;
+    --line: #3A3060;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', system-ui, sans-serif;
+    line-height: 1.55;
+  }
+  img { max-width: 100%; display: block; }
+  h1, h2, h3 { font-family: 'Baloo 2', system-ui, sans-serif; text-wrap: balance; margin: 0; }
+  p { margin: 0; }
+  a { color: inherit; }
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding-inline: 20px;
+  }
+  section { padding-block: 64px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    background:
+      radial-gradient(1200px 500px at 15% -10%, rgba(255,209,102,.35), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(255,158,196,.30), transparent 55%),
+      var(--purple);
+    color: #fff;
+    padding-block: 56px 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,.16);
+    border: 1px solid rgba(255,255,255,.35);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 40px;
+    align-items: center;
+    margin-top: 28px;
+  }
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 76px);
+    line-height: .95;
+    margin-top: 18px;
+  }
+  .hero .tagline {
+    font-size: clamp(19px, 2.4vw, 24px);
+    font-weight: 700;
+    margin-top: 16px;
+    max-width: 46ch;
+  }
+  .hero .sub {
+    margin-top: 14px;
+    max-width: 48ch;
+    color: rgba(255,255,255,.9);
+    font-size: 16px;
+  }
+  .hero-art {
+    background: var(--surface);
+    border-radius: 28px;
+    padding: 10px;
+    box-shadow: 0 24px 60px rgba(30, 18, 60, .35);
+    transform: rotate(1.5deg);
+  }
+  .hero-art img { border-radius: 20px; }
+  .cta-row { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: #4A3400;
+    box-shadow: 0 10px 24px rgba(0,0,0,.18);
+  }
+  .btn-ghost {
+    background: transparent;
+    border-color: rgba(255,255,255,.6);
+    color: #fff;
+  }
+  .btn[aria-disabled="true"] { cursor: not-allowed; opacity: .92; }
+  .note-pill {
+    font-size: 13px;
+    color: rgba(255,255,255,.85);
+  }
+
+  /* ---------- Section headers ---------- */
+  .sign {
+    display: inline-block;
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 800;
+    font-size: clamp(26px, 3.4vw, 34px);
+    background: var(--surface);
+    border: 2px solid var(--line);
+    border-radius: 18px;
+    padding: 10px 26px;
+    box-shadow: 0 6px 0 var(--line);
+  }
+  .section-head { text-align: center; margin-bottom: 40px; }
+  .section-head p {
+    margin-top: 16px;
+    color: var(--text-soft);
+    max-width: 56ch;
+    margin-inline: auto;
+    font-size: 17px;
+  }
+  .band { background: var(--cream-2); }
+
+  /* ---------- Vision ---------- */
+  .vision-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .vision-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+  }
+  .vision-card .mark {
+    flex: none;
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--cream-2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .vision-card h3 { font-size: 18px; margin-bottom: 6px; }
+  .vision-card p { color: var(--text-soft); font-size: 15px; }
+
+  /* ---------- Feature grid ---------- */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .feature-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 20px;
+  }
+  .feature-card .tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .03em;
+    color: var(--purple-deep);
+    background: var(--cream-2);
+    border-radius: 999px;
+    padding: 3px 10px;
+    margin-bottom: 10px;
+  }
+  :root:not([data-theme="light"]) .feature-card .tag { color: #C9BFFF; }
+  .feature-card h3 { font-size: 17px; margin-bottom: 6px; }
+  .feature-card p { font-size: 14px; color: var(--text-soft); }
+
+  /* ---------- Roadmap path ---------- */
+  .path {
+    position: relative;
+    padding-left: 28px;
+    border-left: 3px dashed var(--purple);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .path-item { position: relative; }
+  .path-item::before {
+    content: "";
+    position: absolute;
+    left: -37px;
+    top: 4px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 3px solid var(--purple);
+  }
+  .path-item h3 { font-size: 18px; margin-bottom: 6px; }
+  .path-item p { color: var(--text-soft); font-size: 15px; max-width: 60ch; }
+  .path-item .status {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 800;
+    color: #7A5B00;
+    background: var(--gold);
+    border-radius: 999px;
+    padding: 2px 10px;
+    margin-bottom: 8px;
+  }
+
+  /* ---------- About ---------- */
+  .about {
+    display: grid;
+    grid-template-columns: .8fr 1.2fr;
+    gap: 36px;
+    align-items: center;
+  }
+  .about-portrait {
+    background: var(--surface);
+    border-radius: 24px;
+    border: 1px solid var(--line);
+    padding: 18px;
+    text-align: center;
+  }
+  .about-portrait img { width: 70%; margin: 0 auto; }
+  .about-portrait .name {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: 10px;
+  }
+  .about-portrait .role { color: var(--text-soft); font-size: 14px; }
+  .about-text p { margin-bottom: 14px; font-size: 16px; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .placeholder {
+    background: linear-gradient(transparent 60%, rgba(255,209,102,.55) 60%);
+  }
+
+  /* ---------- Funding ---------- */
+  .funding {
+    background: var(--purple);
+    color: #fff;
+    border-radius: 28px;
+    padding: 44px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .funding h2 { font-size: clamp(26px, 3vw, 32px); }
+  .funding ul { margin: 18px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .funding li { display: flex; gap: 10px; font-size: 15px; }
+  .funding li b { font-family: 'Baloo 2', sans-serif; }
+  .goal-card {
+    background: rgba(255,255,255,.12);
+    border: 1px dashed rgba(255,255,255,.5);
+    border-radius: 20px;
+    padding: 26px;
+    text-align: center;
+  }
+  .goal-card .amount {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+  }
+  .goal-card .amount-label { font-size: 13px; color: rgba(255,255,255,.8); margin-top: 4px; }
+
+  /* ---------- FAQ ---------- */
+  .faq { display: flex; flex-direction: column; gap: 12px; max-width: 760px; margin: 0 auto; }
+  details {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px 20px;
+  }
+  summary {
+    font-family: 'Baloo 2', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+";
+    font-size: 22px;
+    color: var(--purple);
+    flex: none;
+  }
+  details[open] summary::after { content: "–"; }
+  details p { color: var(--text-soft); margin-top: 12px; font-size: 15px; }
+
+  /* ---------- Final CTA + footer ---------- */
+  .final-cta {
+    text-align: center;
+    background: var(--cream-2);
+    border-radius: 28px;
+    padding: 52px 28px;
+  }
+  .final-cta img { width: 96px; margin: 0 auto 18px; }
+  .final-cta h2 { font-size: clamp(26px, 3.6vw, 34px); }
+  .final-cta p { color: var(--text-soft); margin-top: 12px; }
+  .final-cta .cta-row { justify-content: center; }
+
+  footer {
+    padding: 36px 20px 48px;
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 13px;
+  }
+  footer a { color: var(--purple-deep); font-weight: 700; text-decoration: none; }
+
+  @media (max-width: 760px) {
+    .hero-grid, .vision-grid, .feature-grid, .about, .funding { grid-template-columns: 1fr; }
+    .hero-art { transform: none; order: -1; }
+    section { padding-block: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">🌱 Campagne de financement participatif</span>
+    <div class="hero-grid">
+      <div>
+        <h1>Lumiki</h1>
+        <p class="tagline">L'application qui fait grandir les enfants sans les coller à un écran de plus.</p>
+        <p class="sub">Une appli tablette hors-ligne, sans publicité et sans compte à créer, pour les enfants de 2 à 8&nbsp;ans — imaginée et développée par un créateur indépendant.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#financement" aria-disabled="true">🚀 Bientôt sur Ulule</a>
+          <a class="btn btn-ghost" href="#deja-la">Voir ce qui existe déjà</a>
+        </div>
+        <p class="note-pill">La cagnotte n'est pas encore ouverte — cette page sera mise à jour dès son lancement.</p>
+      </div>
+      <div class="hero-art">
+        <img src="assets/village.png" alt="Le village de Lumiki : une carte illustrée reliant tous les jeux et activités de l'application">
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="vision">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="sign">Pourquoi Lumiki&nbsp;?</span>
+      <p>Les écrans ne vont pas disparaître de l'enfance. Autant que le temps passé dessus vaille quelque chose — et reste entre les mains des parents, pas d'un algorithme.</p>
+    </div>
+    <div class="vision-grid">
+      <div class="vision-card">
+        <div class="mark">📴</div>
+        <div>
+          <h3>Hors-ligne par défaut</h3>
+          <p>Aucune connexion requise, aucune donnée envoyée nulle part. Ça fonctionne dans la voiture, l'avion, ou sans wifi à la maison.</p>
+        </div>
+      </div>
+      <div class="vision-card">
+        <div class="mark">🚫</div>
+        <div>
+          <h3>Zéro publicité, zéro piège</h3>
+          <p>Pas de pub, pas d'achat intégré caché, pas de mécanique pensée pour maximiser le temps d'écran. Un espace protégé, pas un entonnoir marketing.</p>
+        </div>
+      </div>
+      <div class="vision-card">
+        <div class="mark">🔐</div>
+        <div>
+          <h3>Les parents gardent la main</h3>
+          <p>Code PIN, déverrouillage biométrique, plages horaires, permissions par activité et suivi de la progression — tout est réglable depuis l'espace parent.</p>
+        </div>
+      </div>
+      <div class="vision-card">
+        <div class="mark">🧩</div>
+        <div>
+          <h3>Pensé pour 2 à 8&nbsp;ans</h3>
+          <p>Gestes simples, sessions courtes, retour au village toujours à portée de main, et une difficulté qui s'ajuste au fil des parties.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="deja-la" class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="sign">Déjà dans l'application</span>
+      <p>Lumiki n'est pas une maquette : c'est une application qui tourne déjà, testée en continu, avec du vrai contenu dedans.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="tag">Navigation</span>
+        <h3>Le village</h3>
+        <p>Une carte illustrée où l'enfant se déplace librement entre les activités, sa maison, son jardin et sa bibliothèque.</p>
+      </div>
+      <div class="feature-card">
+        <span class="tag">8 mini-jeux</span>
+        <h3>Memory, quiz, tri, puzzle…</h3>
+        <p>Memory, quiz, comptage, tri, association, puzzle, lettres et traçage — avec une difficulté qui s'adapte automatiquement au niveau de l'enfant.</p>
+      </div>
+      <div class="feature-card">
+        <span class="tag">Créativité</span>
+        <h3>Atelier de dessin</h3>
+        <p>Dessin libre ou coloriage guidé, palette de couleurs, gomme et tailles de pinceau — une vraie petite boîte à outils.</p>
+      </div>
+      <div class="feature-card">
+        <span class="tag">Audio</span>
+        <h3>Histoires, musiques, berceuses</h3>
+        <p>Une bibliothèque classée par humeur, avec lecture, pause et reprise — et la possibilité d'y ajouter les histoires enregistrées par un parent.</p>
+      </div>
+      <div class="feature-card">
+        <span class="tag">Mini-jeu</span>
+        <h3>Mon jardin</h3>
+        <p>Planter, arroser, récolter : un petit jeu de patience qui rapporte des étoiles, à son propre rythme.</p>
+      </div>
+      <div class="feature-card">
+        <span class="tag">Espace parent</span>
+        <h3>Un vrai tableau de bord</h3>
+        <p>Code PIN et biométrie, plages d'écran, permissions par catégorie, suivi de progression et catalogue vidéo sous contrôle parental.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="feuille-de-route">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="sign">Ce qui arrive ensuite</span>
+      <p>Votre soutien accélère directement cette liste — le développement continue avec ou sans la cagnotte, mais elle décide de sa vitesse.</p>
+    </div>
+    <div class="path">
+      <div class="path-item">
+        <span class="status">En cours</span>
+        <h3>Un compagnon à choyer dans « Ma maison »</h3>
+        <p>Un mini-jeu façon tamagotchi : nourrir, jouer, endormir, laver et câliner sa mascotte — avec des décors qui changent le jour et la nuit.</p>
+      </div>
+      <div class="path-item">
+        <span class="status">En cours</span>
+        <h3>Une nouvelle identité visuelle</h3>
+        <p>Le village, les animaux et la mascotte sont progressivement réillustrés dans un style plus riche et plus chaleureux, image par image.</p>
+      </div>
+      <div class="path-item">
+        <span class="status">Prévu</span>
+        <h3>Saisons et ambiances</h3>
+        <p>Après le jour et la nuit, les décors du village évolueront avec les saisons — été, automne, hiver, printemps.</p>
+      </div>
+      <div class="path-item">
+        <span class="status">Prévu</span>
+        <h3>Plus de contenu</h3>
+        <p>De nouveaux mondes thématiques, de nouvelles histoires et de nouveaux mini-jeux, au même niveau d'exigence que l'existant.</p>
+      </div>
+      <div class="path-item">
+        <span class="status">À l'étude</span>
+        <h3>Sauvegarde optionnelle</h3>
+        <p>Une synchronisation entre appareils pour les familles qui la souhaitent — sans jamais remettre en cause le fonctionnement hors-ligne par défaut.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="qui-suis-je" class="band">
+  <div class="wrap about">
+    <div class="about-portrait">
+      <img src="assets/mascot-wave.png" alt="La mascotte de Lumiki qui fait coucou">
+      <div class="name">Loïc</div>
+      <div class="role">Créateur de Lumiki</div>
+    </div>
+    <div class="about-text">
+      <span class="sign" style="margin-bottom:18px;">Qui je suis</span>
+      <p>Lumiki est un projet que je développe seul, du code à la direction artistique. Je pars du principe qu'une application pour enfants peut être exigeante sans être intrusive&nbsp;: pas de compte à créer, pas de données qui partent quelque part, pas de mécanique pensée pour maximiser le temps d'écran.</p>
+      <p>Je construis Lumiki avec le même soin qu'on mettrait dans un livre ou un jouet en bois&nbsp;: chaque écran, chaque animation, chaque son est choisi — jamais laissé au hasard. C'est un travail lent, et c'est exactement pour ça que la cagnotte compte.</p>
+    </div>
+  </div>
+</section>
+
+<section id="financement">
+  <div class="wrap">
+    <div class="funding">
+      <div>
+        <h2>À quoi servira la cagnotte</h2>
+        <ul>
+          <li>🛠️ <span><b>Temps de développement</b> — pouvoir avancer sur Lumiki de façon soutenue plutôt qu'entre deux missions.</span></li>
+          <li>🎨 <span><b>Illustrations et animations</b> — financer la production du nouveau village, des animaux et des poses de la mascotte.</span></li>
+          <li>📚 <span><b>Contenu additionnel</b> — de nouvelles histoires, de nouveaux mini-jeux, de nouveaux mondes.</span></li>
+          <li>☁️ <span><b>Infrastructure</b> — si la sauvegarde optionnelle voit le jour, ses coûts de serveur.</span></li>
+        </ul>
+      </div>
+      <div class="goal-card">
+        <div class="amount placeholder">[Montant] €</div>
+        <div class="amount-label">Objectif — à confirmer au lancement de la campagne</div>
+        <a class="btn btn-primary" style="margin-top:18px;" href="#" aria-disabled="true">🚀 Bientôt sur Ulule</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="sign">Questions fréquentes</span>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>L'application est-elle vraiment utilisable hors-ligne&nbsp;?</summary>
+        <p>Oui, entièrement. Tout le contenu est installé sur la tablette&nbsp;: aucune connexion internet n'est nécessaire pour jouer, écouter une histoire ou dessiner.</p>
+      </details>
+      <details>
+        <summary>Sur quel appareil fonctionne Lumiki&nbsp;?</summary>
+        <p>Lumiki est conçue pour les tablettes Android, en mode paysage. D'autres plateformes pourront être envisagées selon l'accueil du projet.</p>
+      </details>
+      <details>
+        <summary>À partir de quel âge&nbsp;?</summary>
+        <p>L'application vise les enfants de 2 à 8&nbsp;ans, avec des activités qui s'ajustent progressivement à leur niveau.</p>
+      </details>
+      <details>
+        <summary>Quand la campagne Ulule sera-t-elle en ligne&nbsp;?</summary>
+        <p>Elle n'est pas encore lancée — cette page sera mise à jour avec le lien dès son ouverture.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="soutenir">
+  <div class="wrap">
+    <div class="final-cta">
+      <img src="assets/mascot-neutral.png" alt="La mascotte de Lumiki">
+      <h2>Aidez Lumiki à grandir</h2>
+      <p>Chaque contribution finance directement du temps de développement et des illustrations en plus dans l'application.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#" aria-disabled="true">🚀 Bientôt sur Ulule</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Lumiki — application éducative pour tablette, hors-ligne et sans publicité.</p>
+  <p style="margin-top:6px;">[Ton email ou tes réseaux ici] · <a href="#">Suivre le projet</a></p>
+</footer>
+
+</body>
+</html>
